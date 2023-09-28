@@ -179,7 +179,7 @@ function Trailer({ trailer }) {
 // MAIN APP
 export default function App() {
   const [moviesData, setMoviesData] = useState([]);
-  const [searchInput, setSearchInput] = useState(`transformers`);
+  const [searchInput, setSearchInput] = useState(``);
 
   function handleSearchInput(input) {
     setSearchInput(input);
