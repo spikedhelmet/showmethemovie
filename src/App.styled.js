@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
      font-size: 0.8em;
    }
     @media only screen and (${devices.xs}) {
-     font-size: 0.6em;
+     font-size: 0.7em;
    }
 
   }
@@ -53,7 +53,7 @@ export const SearchBar = styled.input`
   color: var(--font-color-white);
 
   padding: 1rem 1.5rem;
-  min-width: 80%;
+  width: 95%;
   border-radius: var(--border-radius-slight);
   margin-top: 4rem;
   margin-bottom: 2rem;
@@ -74,7 +74,8 @@ export const MovieList = styled.div`
   display: grid;
   grid-auto-flow: row;
   align-content: center;
-  width: 80%;
+  width: 95%;
+  width: 95%;
 `;
 
 export const MovieContainer = styled.div`
@@ -82,7 +83,7 @@ export const MovieContainer = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 export const ImageContainer = styled.div`
@@ -97,14 +98,9 @@ export const Image = styled.img`
   border-top-left-radius: var(--border-radius-slight);
   border-top-right-radius: var(--border-radius-slight);
 
-  @media only screen and (${devices.md}) {
-    /* width: 8em;
-    height: 12em; */
-  }
-
   @media only screen and (${devices.sm}) {
-    width: 8em;
-    height: 12em;
+    width: 10em;
+    height: 15em;
   }
 `;
 
@@ -173,7 +169,7 @@ export const MovieDetails = styled.div`
 
   @media only screen and (${devices.sm}) {
     span {
-      font-size: 0.8em;
+      /* font-size: 0.85em; */
     }
   }
 `;
@@ -211,20 +207,6 @@ export const AddToListButton = styled.button`
     opacity: 95%;
   }
 `;
-
-// const TrailerPopup = styled.div`
-//export    display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   position: absolute;
-//   /* top: 0; */
-//   height: 100vh;
-//   width: 100vw;
-//   background-color: black;
-//   /* opacity: 0.9; */
-//   z-index: 9999;
-//   /* pointer-events: none; */
-// `;
 
 export const TrailerPopup = styled.div`
   display: flex;
@@ -280,11 +262,11 @@ export const WatchTrailerButton = styled.button`
   }
 
   @media only screen and (${devices.sm}) {
-    font-size: 0.8em;
+    font-size: 1em;
     padding: 0.2rem 0.4rem;
   }
   @media only screen and (${devices.xs}) {
-    font-size: 0.6em;
+    font-size: 1em;
     padding: 0.2rem 0.4rem;
   }
 `;
