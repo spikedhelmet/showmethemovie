@@ -2,6 +2,8 @@
 import { styled } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { devices } from "./constants";
+import { Dropdown } from "react-bootstrap";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -21,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Roboto', sans-serif;     */
     background-color: var(--bg-color-main);
 
     @media only screen and (${devices.md}) {
@@ -48,42 +50,43 @@ export const Container = styled.div`
 export const SearchBar = styled.input`
   font-family: inherit;
   border: none;
-  outline: none;
   background-color: var(--bg-color-secondary);
   color: var(--font-color-white);
-
   padding: 1rem 1.5rem;
-  width: 95%;
+  min-width: 95%;
   border-radius: var(--border-radius-slight);
-  margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 
   &:focus {
-    outline: 2px solid white;
+    outline: 2px solid rgba(255, 255, 255, 0.9);
   }
-`;
-
-export const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 2rem;
 `;
 
 export const MovieList = styled.div`
   display: grid;
-  grid-auto-flow: row;
-  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  align-items: top;
   width: 95%;
-  width: 95%;
+  column-gap: 1rem;
+  row-gap: 2rem;
+
+  @media only screen and (max-width: 1085px) {
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  }
+  @media only screen and (max-width: 975px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-export const MovieContainer = styled.div`
-  /* padding: 0 1rem; */
+// * Movie item
 
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+export const MovieContainer = styled.div`
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  grid-template-rows: 1fr minmax(1rem, 2.2rem);
+  column-gap: 1rem;
+  row-gap: 0.5rem;
 `;
 
 export const ImageContainer = styled.div`
@@ -95,19 +98,26 @@ export const ImageContainer = styled.div`
 export const Image = styled.img`
   width: 10rem;
   height: 15rem;
-  border-top-left-radius: var(--border-radius-slight);
-  border-top-right-radius: var(--border-radius-slight);
+  border-radius: var(--border-radius-slight);
+  /* border-top-left-radius: var(--border-radius-slight);
+  border-top-right-radius: var(--border-radius-slight); */
+
+  @media only screen and (${devices.md}) {
+    /* width: 8em;
+    height: 12em; */
+  }
 
   @media only screen and (${devices.sm}) {
-    width: 10em;
-    height: 15em;
+    /* width: 8em;
+    height: 12em; */
   }
 `;
 
-export const MovieHeader = styled.div`
+export const MovieDescription = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  align-self: flex-start;
+  gap: 0rem;
 `;
 
 export const MovieTitle = styled.h2`
@@ -139,42 +149,35 @@ export const ReadMoreButton = styled.button`
   margin-top: 0.5rem;
 `;
 
-export const Description = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  gap: 0.4rem;
-`;
-
 export const MovieDetails = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   color: var(--font-color-white);
-  /* width: 60%; */
   flex-wrap: wrap;
-  flex-grow: 0;
 
   span {
     background-color: var(--bg-color-secondary);
-    padding: 0.8rem;
     border-radius: var(--border-radius-curved);
+    padding: 0.4rem 0.6rem;
   }
 
   @media only screen and (${devices.md}) {
     span {
-      font-size: 1em;
-      padding: 0.7em;
+      /* padding: 0.7em; */
     }
   }
 
   @media only screen and (${devices.sm}) {
     span {
-      /* font-size: 0.85em; */
+      /* font-size: 0.8em; */
     }
   }
 `;
 
-export const DescriptionItem = styled.span``;
+export const DescriptionItem = styled.span`
+  display: flex;
+  align-items: center;
+`;
 
 export const StatusContainer = styled.div`
   display: flex;
@@ -221,7 +224,7 @@ export const TrailerPopup = styled.div`
   z-index: 9999;
 
   @media (max-width: 768px) {
-    height: 100vh; /* Adjust as needed */
+    height: 100vh;
   }
 `;
 
@@ -233,11 +236,14 @@ export const TrailerContainer = styled.div`
   position: relative; /* Relative positioning to center the iframe */
 
   @media (max-width: 768px) {
-    max-height: 60vh; /* Adjust as needed */
+    max-height: 60vh;
   }
 `;
 
 export const WatchTrailerButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: inherit;
   font-size: inherit;
   border: none;
@@ -245,9 +251,7 @@ export const WatchTrailerButton = styled.button`
   color: #ffdecc;
   background-color: #fe5800;
   padding: 0.4rem 0.6rem;
-  /* border-radius: var(--border-radius-slight); */
-  border-bottom-left-radius: var(--border-radius-slight);
-  border-bottom-right-radius: var(--border-radius-slight);
+  border-radius: var(--border-radius-slight);
   transition: ease-in 0.2s;
 
   &:hover,
@@ -262,11 +266,11 @@ export const WatchTrailerButton = styled.button`
   }
 
   @media only screen and (${devices.sm}) {
-    font-size: 1em;
+    /* font-size: 0.8em; */
     padding: 0.2rem 0.4rem;
   }
   @media only screen and (${devices.xs}) {
-    font-size: 1em;
+    /* font-size: 0.8em; */
     padding: 0.2rem 0.4rem;
   }
 `;
@@ -307,10 +311,116 @@ export const CloseTrailerButton = styled.button`
 //   text-align: center;
 // `;
 
-// function TrailerNotFound() {
-//   return (
-//     <TrailerNotFoundMessage>
-//       Trailer not found for this movie.
-//     </TrailerNotFoundMessage>
-//   );
-// }
+// * Navbar
+
+export const NavMenu = styled.nav`
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr); */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 100%;
+  background-color: var(--bg-color-secondary);
+  /* margin-bottom: 2rem; */
+  gap: 0.5rem;
+`;
+
+export const NavItem = styled.button`
+  background-color: inherit;
+  border: none;
+  color: var(--font-color-white);
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+
+  /* background-color: #3c3f48; */
+  border-radius: var(--border-radius-slight);
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #3c3f48;
+  }
+`;
+
+// // Style the Dropdown.Item component
+// export const StyledDropdownItem = styled(Dropdown.Item)`
+//   // Your styling for Dropdown.Item
+//   // Example styles:
+//   color: #333;
+//   background-color: #333;
+//   padding: 10px;
+//   &:hover {
+//     background-color: #f0f0f0;
+//   }
+// `;
+// export const StyledDropdownButton = styled(DropdownButton)`
+//   color: #333;
+
+//   padding: 10px;
+//   &:hover {
+//     background-color: #f0f0f0;
+//   }
+// `;
+
+export const NavDropDown = styled.input``;
+
+// * Background Poster
+export const PosterContainer = styled.div`
+  width: 100%;
+  /* height: 20rem; */
+  margin-bottom: 2rem;
+  position: relative;
+`;
+
+export const HomepageHeading = styled.h1`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  white-space: nowrap; /* Prevent text from wrapping */
+  font-size: 3rem;
+  color: #fff;
+  /* box-shadow: 0px 0px 4px 0px rgb(0, 0, 0, 0.5); */
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 2px 1px -2px rgba(0, 0, 0, 0.12), 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+`;
+
+export const BackgroundPoster = styled.img`
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  object-position: center;
+  opacity: 40%;
+
+  @media only screen and (${devices.md}) {
+    height: 18rem;
+  }
+  @media only screen and (${devices.sm}) {
+    height: 15rem;
+  }
+  @media only screen and (${devices.xxs}) {
+    height: 10rem;
+  }
+`;
+
+// Pagination
+export const SmallMovieContainer = styled.div`
+  /* margin-right: 0.8rem; */
+`;
+
+export const CarouselContainer = styled.div`
+  /* align-self: center; */
+  /* max-width: 95dvw; */
+  margin: 0rem 1rem 2.5rem 1rem;
+`;
+
+export const TitleSmall = styled.span`
+  /* font-size: 1rem; */
+  color: #fff;
+  /* padding: 0.5rem; */
+`;

@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import {
-  FlexContainer,
   MovieContainer,
   Image,
   ImageContainer,
-  Description,
-  MovieHeader,
+  MovieDescription,
   MovieTitle,
   MovieOverview,
   MovieDetails,
@@ -17,14 +15,13 @@ import {
   WatchTrailerButton,
   CloseTrailerButton,
 } from "../App.styled";
-import { X } from "@phosphor-icons/react";
 
-import Trailer from "../components/Trailer";
-import fetchTrailer from "../services/fetchTrailer";
-import fetchMovieData from "../services/fetchMovieData";
-import convertTimeFormat from "../helpers/convertTimeFormat";
+import fetchTrailer from "../Services/fetchTrailer";
+import fetchDataById from "../Services/fetchDataById";
+import formatTime from "../Scripts/formatTime";
+import Trailer from "./Trailer";
 
-export default function MovieItem({
+function MovieItem({
   id,
   title,
   releaseDate,
@@ -58,59 +55,57 @@ export default function MovieItem({
   }
 
   useEffect(() => {
-    fetchMovieData(id).then((movieDetails) => {
+    fetchDataById(id).then((movieDetails) => {
       setRuntime(movieDetails.runtime); // Set the runtime in the state
     });
   }, [id]);
 
   return (
     <>
-      <FlexContainer>
-        <MovieContainer>
-          <ImageContainer>
-            <Image src={`${posterBaseUrl}${poster}`} alt={`${title} poster`} />
-            <WatchTrailerButton onClick={() => handleTrailer(id)}>
-              Watch trailer
-            </WatchTrailerButton>
-          </ImageContainer>
-          <Description>
-            <MovieHeader>
-              <MovieTitle>{title}</MovieTitle>
-              <MovieGenre>{genres}</MovieGenre>
-              <MovieOverview>
-                {/* Display only the visible portion of the overview */}
-                {isOverviewExpanded
-                  ? overview
-                  : `${overview.substring(0, 300)}${
-                      overview.length > 300 ? "..." : ""
-                    }`}
-                {/* Display "Read More" button only if overview is too long */}
-                {overview.length > 300 && (
-                  <ReadMoreButton onClick={toggleOverview}>
-                    {isOverviewExpanded ? "Read Less" : "Read More"}
-                  </ReadMoreButton>
-                )}
-              </MovieOverview>
-            </MovieHeader>
-            <MovieDetails>
-              <DescriptionItem>{releaseDate}</DescriptionItem>
-              <DescriptionItem>🕛{convertTimeFormat(runtime)}</DescriptionItem>
-              <DescriptionItem>⭐{rating}</DescriptionItem>
-            </MovieDetails>
-          </Description>
-        </MovieContainer>
-        {isOpenTrailer && (
-          <TrailerPopup>
-            <TrailerContainer>
-              <CloseTrailerButton onClick={handleOpenTrailer}>
-                <span>Close Trailer</span>
-                <X size={18} />
-              </CloseTrailerButton>
-              <Trailer trailer={trailer} title={title} />
-            </TrailerContainer>
-          </TrailerPopup>
-        )}
-      </FlexContainer>
+      <MovieContainer>
+        <ImageContainer>
+          <Image src={`${posterBaseUrl}${poster}`} alt={`${title} poster`} />
+        </ImageContainer>
+        <MovieDescription>
+          <MovieTitle>{title}</MovieTitle>
+          <MovieGenre>{genres}</MovieGenre>
+          <MovieOverview>
+            {/* Display only the visible portion of the overview */}
+            {isOverviewExpanded
+              ? overview
+              : `${overview.substring(0, 150)}${
+                  overview.length > 150 ? "..." : ""
+                }`}
+            {/* Display "Read More" button only if overview is too long */}
+            {overview.length > 150 && (
+              <ReadMoreButton onClick={toggleOverview}>
+                {isOverviewExpanded ? "Read Less" : "Read More"}
+              </ReadMoreButton>
+            )}
+          </MovieOverview>
+        </MovieDescription>
+        <WatchTrailerButton onClick={() => handleTrailer(id)}>
+          Watch trailer
+        </WatchTrailerButton>
+        <MovieDetails>
+          <DescriptionItem>📆 {releaseDate}</DescriptionItem>
+          <DescriptionItem>🕛 {formatTime(runtime)}</DescriptionItem>
+          <DescriptionItem>⭐ {rating}</DescriptionItem>
+        </MovieDetails>
+      </MovieContainer>
+      {isOpenTrailer && (
+        <TrailerPopup>
+          <TrailerContainer>
+            <CloseTrailerButton onClick={handleOpenTrailer}>
+              <span>Close Trailer</span>
+              <i class="ph ph-x"></i>
+            </CloseTrailerButton>
+            <Trailer trailer={trailer} title={title} />
+          </TrailerContainer>
+        </TrailerPopup>
+      )}
     </>
   );
 }
+
+export default MovieItem;

@@ -1,4 +1,4 @@
-export default function Trailer({ trailer }) {
+function Trailer({ trailer }) {
   const embedUrl = `https://www.youtube.com/embed/${trailer}`;
   return (
     <iframe
@@ -12,3 +12,5 @@ export default function Trailer({ trailer }) {
     ></iframe>
   );
 }
+
+export default Trailer;

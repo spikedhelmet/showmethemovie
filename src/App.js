@@ -1,54 +1,42 @@
-import { useEffect, useState } from "react";
-import { GlobalStyle, Container, SearchBar, MovieList } from "./App.styled";
-import MovieItem from "./components/MovieItem";
-import fetchMovieList from "./services/fetchMovieList";
+import { useState } from "react";
+import { Container, SearchBar } from "./App.styled";
+import Homepage from "./Components/Homepage";
+import { Route, Routes, useNavigate, useSearchParams } from "react-router-dom";
+import SearchResults from "./Components/SearchResults";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./Components/Navbar";
+import NavResults from "./Components/NavResults";
+import MoviePage from "./Components/MoviePage";
 
 export default function App() {
-  const [moviesData, setMoviesData] = useState([]);
-  const [searchInput, setSearchInput] = useState(``);
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchInput, setSearchInput] = useState(searchParams.get(`search`));
+  const navigate = useNavigate();
 
-  function handleSearchInput(input) {
-    setSearchInput(input);
-  }
-
-  useEffect(
-    function () {
-      fetchMovieList(searchInput).then((mappedMovies) => {
-        const filteredMovies = mappedMovies.filter(
-          (movie) => movie.runtime >= 60 && movie.budget >= 100000
-        );
-        const sortedMovies = filteredMovies.sort((a, b) => b.rating - a.rating);
-        setMoviesData(sortedMovies);
-      });
-    },
-    [searchInput]
-  );
+  const handleSearch = (newSearch) => {
+    setSearchInput(newSearch);
+    searchParams.set(`search`, newSearch);
+    navigate(`/searchResults?${searchParams.toString()}`);
+  };
 
   return (
     <>
-      <GlobalStyle />
       <Container>
+        <Navbar />
         <SearchBar
           type="search"
-          value={searchInput}
-          onChange={(e) => handleSearchInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSearch(e.target.value);
+          }}
           placeholder="Movie title"
         />
-        <MovieList>
-          {moviesData.map((movie) => (
-            <MovieItem
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              overview={movie.overview}
-              releaseDate={movie.releaseDate}
-              rating={movie.rating}
-              genres={movie.genres.join(", ")} // Join genre names with a comma
-              poster={movie.poster}
-            />
-          ))}
-        </MovieList>
       </Container>
+      <Routes>
+        <Route index element={<Homepage />} />
+        <Route path="searchResults" element={<SearchResults />} />
+        <Route path="navResults" element={<NavResults />} />
+        <Route path="moviePage" element={<MoviePage />} />
+      </Routes>
     </>
   );
 }

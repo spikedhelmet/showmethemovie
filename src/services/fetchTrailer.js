@@ -1,4 +1,4 @@
-export default async function fetchTrailer(movieId) {
+async function fetchTrailer(movieId) {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=1ae05c4ea048c47557912c1f2f5d77b2`
@@ -16,3 +16,5 @@ export default async function fetchTrailer(movieId) {
     throw new Error("Error fetching trailer");
   }
 }
+
+export default fetchTrailer;

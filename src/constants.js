@@ -1,4 +1,5 @@
 const breakpoints = {
+  xxs: "390px",
   xs: "450px",
   sm: "650px",
   md: "768px",
@@ -8,6 +9,7 @@ const breakpoints = {
 };
 
 export const devices = {
+  xxs: `(max-width: ${breakpoints.xs})`,
   xs: `(max-width: ${breakpoints.xs})`,
   sm: `(max-width: ${breakpoints.sm})`,
   md: `(max-width: ${breakpoints.md})`,
