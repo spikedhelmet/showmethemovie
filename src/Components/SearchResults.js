@@ -1,4 +1,4 @@
-import MovieItem from "../Components/MovieItem";
+import ResultMovie from "./ResultMovie";
 import { useEffect, useState } from "react";
 import { Container, MovieList } from "../App.styled";
 import { useSearchParams } from "react-router-dom";
@@ -23,7 +23,7 @@ function SearchResults() {
     <Container>
       <MovieList>
         {moviesData.map((movie) => (
-          <MovieItem
+          <ResultMovie
             key={movie.id}
             id={movie.id}
             title={movie.title}

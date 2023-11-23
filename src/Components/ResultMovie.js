@@ -21,7 +21,7 @@ import fetchDataById from "../Services/fetchDataById";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
 
-function MovieItem({
+function ResultMovie({
   id,
   title,
   releaseDate,
@@ -108,4 +108,4 @@ function MovieItem({
   );
 }
 
-export default MovieItem;
+export default ResultMovie;

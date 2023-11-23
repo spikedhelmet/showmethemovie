@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, MovieList } from "../App.styled";
-import MovieItem from "./MovieItem";
+import MovieItem from "./ResultMovie";
 import { useSearchParams } from "react-router-dom";
 import fetchMoviesOnNav from "../Services/fetchMoviesOnNav";
 
