@@ -20,13 +20,14 @@ const responsive = {
     items: 2,
     // partialVisibilityGutter: 30,
   },
+
   tablet: {
     breakpoint: {
       max: 1024,
       min: 464,
     },
-    items: 4,
-    partialVisibilityGutter: 40,
+    items: 5,
+    // partialVisibilityGutter: 40,
   },
 };
 export default function Cuckrousel({ items, heading }) {

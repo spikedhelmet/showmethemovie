@@ -317,12 +317,12 @@ export const NavMenu = styled.nav`
   /* display: grid;
   grid-template-columns: repeat(3, 1fr); */
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   min-width: 100%;
   background-color: var(--bg-color-secondary);
-  /* margin-bottom: 2rem; */
-  gap: 0.5rem;
+  padding-left: 1rem;
+  gap: 2rem;
 `;
 
 export const NavItem = styled.button`

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, MovieList } from "../App.styled";
 import { useSearchParams } from "react-router-dom";
-import MovieItem from "./MovieItem";
+import MovieItem from "../Components/MovieItem";
 import fetchMoviesOnSearch from "../Services/fetchMoviesOnSearch";
 
 function SearchResults() {

@@ -42,7 +42,8 @@ function Navbar() {
           Top Rated
         </Dropdown.Item>
       </DropdownButton>
-      <DropdownButton
+
+      {/* <DropdownButton
         variant="dark"
         menuVariant="dark"
         id="dropdown-basic-button"
@@ -52,7 +53,7 @@ function Navbar() {
         <Dropdown.Item href="#/action-2">Now Playing</Dropdown.Item>
         <Dropdown.Item href="#/action-3">Upcoming</Dropdown.Item>
         <Dropdown.Item href="#/action-3">Top Rated</Dropdown.Item>
-      </DropdownButton>
+      </DropdownButton> */}
     </NavMenu>
   );
 }
