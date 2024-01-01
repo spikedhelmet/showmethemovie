@@ -393,7 +393,7 @@ export const SmallMovieContainer = styled.div`
 
 export const CarouselContainer = styled.div`
   width: 100%;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 export const RelativeContainer = styled.div`
