@@ -9,51 +9,51 @@ import {
 } from "../App.styled";
 
 function Carousel({ items, heading }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState(0);
-  const timeoutRef = useRef(null);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [touchStart, setTouchStart] = useState(0);
+  // const timeoutRef = useRef(null);
 
-  function resetTimeout() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }
+  // function resetTimeout() {
+  //   if (timeoutRef.current) {
+  //     clearTimeout(timeoutRef.current);
+  //   }
+  // }
 
-  useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(
-      () =>
-        setCurrentIndex((prevIndex) =>
-          prevIndex === items.length - 1 ? 0 : prevIndex + 1
-        ),
-      3000
-    );
+  // useEffect(() => {
+  //   resetTimeout();
+  //   timeoutRef.current = setTimeout(
+  //     () =>
+  //       setCurrentIndex((prevIndex) =>
+  //         prevIndex === items.length - 1 ? 0 : prevIndex + 1
+  //       ),
+  //     3000
+  //   );
 
-    return () => {
-      resetTimeout();
-    };
-  }, [currentIndex, items.length, items]);
+  //   return () => {
+  //     resetTimeout();
+  //   };
+  // }, [currentIndex, items.length, items]);
 
-  const handleTouchStart = (e) => {
-    setTouchStart(e.touches[0].clientX);
-  };
+  // const handleTouchStart = (e) => {
+  //   setTouchStart(e.touches[0].clientX);
+  // };
 
-  const handleTouchMove = (e) => {
-    const touchEnd = e.touches[0].clientX;
-    if (touchStart - touchEnd > 150) {
-      // swipe left
-      setCurrentIndex((prevIndex) =>
-        prevIndex + 3 >= items.length ? 0 : prevIndex + 3
-      );
-    }
+  // const handleTouchMove = (e) => {
+  //   const touchEnd = e.touches[0].clientX;
+  //   if (touchStart - touchEnd > 150) {
+  //     // swipe left
+  //     setCurrentIndex((prevIndex) =>
+  //       prevIndex + 3 >= items.length ? 0 : prevIndex + 3
+  //     );
+  //   }
 
-    if (touchStart - touchEnd < -150) {
-      // swipe right
-      setCurrentIndex((prevIndex) =>
-        prevIndex - 3 < 0 ? items.length - 3 : prevIndex - 3
-      );
-    }
-  };
+  //   if (touchStart - touchEnd < -150) {
+  //     // swipe right
+  //     setCurrentIndex((prevIndex) =>
+  //       prevIndex - 3 < 0 ? items.length - 3 : prevIndex - 3
+  //     );
+  //   }
+  // };
 
   return (
     <>
@@ -61,7 +61,7 @@ function Carousel({ items, heading }) {
         {heading}
       </h3>
       <RelativeContainer>
-        <PrevButton
+        {/* <PrevButton
           onClick={() =>
             setCurrentIndex((prevIndex) =>
               prevIndex - 3 < 0 ? items.length - 3 : prevIndex - 3
@@ -78,16 +78,16 @@ function Carousel({ items, heading }) {
           }
         >
           Next→
-        </NextButton>
+        </NextButton> */}
 
         <CarouselContainer
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
+        // onTouchStart={handleTouchStart}
+        // onTouchMove={handleTouchMove}
         >
           <CarouselContent
-            style={{
-              transform: `translateX(-${currentIndex * (100 / items.length)}%)`,
-            }}
+          // style={{
+          //   transform: `translateX(-${currentIndex * (100 / items.length)}%)`,
+          // }}
           >
             {items.map((movie) => (
               <SmallMovieItem
