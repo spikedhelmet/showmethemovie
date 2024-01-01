@@ -31,8 +31,8 @@ function ResultMovie({
   poster,
 }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
-  const [runtime, setRuntime] = useState(""); // State to hold the runtime
-  const [trailer, setTrailer] = useState(""); // State to hold the trailer
+  const [runtime, setRuntime] = useState("");
+  const [trailer, setTrailer] = useState("");
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
   const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
 
@@ -44,7 +44,7 @@ function ResultMovie({
     fetchTrailer(id).then((trailerKey) => {
       console.log(trailerKey);
       if (trailerKey) {
-        setTrailer(trailerKey); // Set the trailer in the state
+        setTrailer(trailerKey);
         setIsOpenTrailer(!isOpenTrailer);
       }
     });
@@ -56,7 +56,7 @@ function ResultMovie({
 
   useEffect(() => {
     fetchDataById(id).then((movieDetails) => {
-      setRuntime(movieDetails.runtime); // Set the runtime in the state
+      setRuntime(movieDetails.runtime);
     });
   }, [id]);
 
@@ -97,8 +97,7 @@ function ResultMovie({
         <TrailerPopup>
           <TrailerContainer>
             <CloseTrailerButton onClick={handleOpenTrailer}>
-              <span>Close Trailer</span>
-              <i class="ph ph-x"></i>
+              <span>Close Trailer ⓧ</span>
             </CloseTrailerButton>
             <Trailer trailer={trailer} title={title} />
           </TrailerContainer>

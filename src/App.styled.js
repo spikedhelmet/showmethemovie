@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    /* font-family: 'Roboto', sans-serif;     */
+    font-family: 'Roboto', sans-serif;    
     background-color: var(--bg-color-main);
 
     @media only screen and (${devices.md}) {
@@ -230,10 +230,10 @@ export const TrailerPopup = styled.div`
 
 export const TrailerContainer = styled.div`
   width: 100%;
-  max-width: 800px; /* Set a maximum width for the container */
+  max-width: 800px;
   height: 100%;
-  max-height: 80vh; /* Set a maximum height for the container */
-  position: relative; /* Relative positioning to center the iframe */
+  max-height: 80vh;
+  position: relative;
 
   @media (max-width: 768px) {
     max-height: 60vh;
@@ -345,26 +345,6 @@ export const NavItem = styled.button`
   }
 `;
 
-// // Style the Dropdown.Item component
-// export const StyledDropdownItem = styled(Dropdown.Item)`
-//   // Your styling for Dropdown.Item
-//   // Example styles:
-//   color: #333;
-//   background-color: #333;
-//   padding: 10px;
-//   &:hover {
-//     background-color: #f0f0f0;
-//   }
-// `;
-// export const StyledDropdownButton = styled(DropdownButton)`
-//   color: #333;
-
-//   padding: 10px;
-//   &:hover {
-//     background-color: #f0f0f0;
-//   }
-// `;
-
 export const NavDropDown = styled.input``;
 
 // * Background Poster
@@ -381,10 +361,8 @@ export const HomepageHeading = styled.h1`
   transform: translateY(-50%);
   width: 100%;
   text-align: center;
-  white-space: nowrap; /* Prevent text from wrapping */
-  font-size: 3rem;
+  white-space: nowrap;
   color: #fff;
-  /* box-shadow: 0px 0px 4px 0px rgb(0, 0, 0, 0.5); */
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
     0px 2px 1px -2px rgba(0, 0, 0, 0.12), 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
   padding: 1rem;
@@ -408,19 +386,42 @@ export const BackgroundPoster = styled.img`
   }
 `;
 
-// Pagination
+// Carousel
 export const SmallMovieContainer = styled.div`
   /* margin-right: 0.8rem; */
 `;
 
 export const CarouselContainer = styled.div`
-  /* align-self: center; */
-  /* max-width: 95dvw; */
-  margin: 0rem 1rem 2.5rem 1rem;
+  width: 100%;
+  overflow: scroll;
 `;
 
-export const TitleSmall = styled.span`
-  /* font-size: 1rem; */
-  color: #fff;
-  /* padding: 0.5rem; */
+export const RelativeContainer = styled.div`
+  position: relative;
+`;
+
+export const CarouselButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+`;
+
+export const PrevButton = styled(CarouselButton)`
+  left: 10px;
+  z-index: 9999;
+`;
+
+export const NextButton = styled(CarouselButton)`
+  right: 10px;
+  z-index: 9999;
+`;
+
+export const CarouselContent = styled.div`
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 `;

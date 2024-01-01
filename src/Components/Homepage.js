@@ -7,9 +7,8 @@ import {
 } from "../App.styled";
 import voxbest from "../imgs/voxbest.jpg";
 import fetchMovieList from "../Services/fetchMoviesOnNav";
-import { NavLink } from "react-router-dom";
-
-import Cuckrousel from "./Cuckrousel";
+import MovieCarousel from "./Carousel";
+import Footer from "./Footer";
 
 function Homepage() {
   //Change this shitshow to useReducer
@@ -21,10 +20,6 @@ function Homepage() {
 
   //TODO Can be made into its own hook
   useEffect(() => {
-    // fetchMovieList(displayed).then((mappedMovies) => {
-    //   setMoviesData(mappedMovies);
-    // });
-
     fetchMovieList("now_playing").then((mappedMovies) => {
       setNowPlaying(mappedMovies);
     });
@@ -50,10 +45,12 @@ function Homepage() {
           <HomepageHeading>Find the movie you like</HomepageHeading>
         </PosterContainer>
       </Container>
-      <Cuckrousel items={popular} heading={"Popular"} />
-      <Cuckrousel items={upcoming} heading={"Upcoming"} />
-      {/* <Cuckrousel items={nowPlaying} heading={"Now Playing"} />
-      <Cuckrousel items={topRated} heading={"Top Rated"} /> */}
+      <MovieCarousel items={popular} heading={"Popular"} />
+      <MovieCarousel items={upcoming} heading={"Upcoming"} />
+      <MovieCarousel items={nowPlaying} heading={"Now Playing"} />
+      <MovieCarousel items={topRated} heading={"Top Rated"} />
+
+      <Footer></Footer>
     </>
   );
 }
