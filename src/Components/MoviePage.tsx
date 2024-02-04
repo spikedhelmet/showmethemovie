@@ -11,7 +11,7 @@ import {
   DescriptionItem,
   FlexCont,
   Overlay,
-} from "../Components/MoviePage.styled";
+} from "./MoviePage.styled";
 
 import {
   TrailerContainer,
@@ -25,9 +25,12 @@ import fetchDataById from "../Services/fetchDataById";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
 import { Backdrop, BackdropImg } from "./MoviePage.styled";
+import { MovieDetailsInterface } from "../interfaces";
 
 function MoviePage() {
-  const [movieData, setMovieData] = useState({});
+  const [movieData, setMovieData] = useState<MovieDetailsInterface | null>(
+    null
+  );
   const [trailer, setTrailer] = useState("");
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
 
@@ -40,23 +43,12 @@ function MoviePage() {
     });
   }, []);
 
-  const {
-    title,
-    release_date,
-    vote_average,
-    overview,
-    genres,
-    poster_path,
-    backdrop_path,
-    runtime,
-  } = movieData;
-
   console.log(movieData);
 
-  const backdropUrl = backdropBaseUrl + backdrop_path;
+  const backdropUrl = backdropBaseUrl + movieData?.backdrop_path;
   // Demo ID
 
-  function handleTrailer(id) {
+  function handleTrailer(id: number) {
     fetchTrailer(id).then((trailerKey) => {
       if (trailerKey) {
         setTrailer(trailerKey); // Set the trailer in the state
@@ -69,8 +61,8 @@ function MoviePage() {
     setIsOpenTrailer(!isOpenTrailer);
   }
 
-  const genresJoined = genres
-    ? genres.map((genre) => genre.name).join(", ")
+  const genresJoined = movieData?.genres
+    ? movieData?.genres.map((genre) => genre.name).join(", ")
     : "";
 
   return (
@@ -84,23 +76,25 @@ function MoviePage() {
         <MovieContainer>
           <ImageContainer>
             <Image
-              src={`${posterBaseUrl}${poster_path}`}
-              alt={`${title} poster`}
+              src={`${posterBaseUrl}${movieData?.poster_path}`}
+              alt={`${movieData?.title} poster`}
             />
           </ImageContainer>
           <div>
             <MovieDescription>
-              <MovieTitle>{title}</MovieTitle>
+              <MovieTitle>{movieData?.title}</MovieTitle>
               <MovieGenre>{genresJoined} </MovieGenre>
-              <MovieOverview>{overview}</MovieOverview>
+              <MovieOverview>{movieData?.overview}</MovieOverview>
             </MovieDescription>
             <WatchTrailerButton onClick={() => handleTrailer(281957)}>
               ▶️ Watch trailer
             </WatchTrailerButton>
             <MovieDetails>
-              <DescriptionItem>📆 {release_date}</DescriptionItem>
-              <DescriptionItem>🕛 {formatTime(runtime)}</DescriptionItem>
-              <DescriptionItem>⭐ {vote_average}</DescriptionItem>
+              <DescriptionItem>📆 {movieData?.release_date}</DescriptionItem>
+              <DescriptionItem>
+                🕛 {formatTime(movieData?.runtime)}
+              </DescriptionItem>
+              <DescriptionItem>⭐ {movieData?.vote_average}</DescriptionItem>
             </MovieDetails>
           </div>
         </MovieContainer>
@@ -113,9 +107,9 @@ function MoviePage() {
           <TrailerContainer>
             <CloseTrailerButton onClick={handleOpenTrailer}>
               <span>Close Trailer</span>
-              <i class="ph ph-x"></i>
+              <i className="ph ph-x"></i>
             </CloseTrailerButton>
-            <Trailer trailer={trailer} title={title} />
+            <Trailer trailer={trailer} />
           </TrailerContainer>
         </TrailerPopup>
       )}

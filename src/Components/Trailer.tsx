@@ -1,4 +1,8 @@
-function Trailer({ trailer }) {
+interface TrailerProps {
+  trailer: string;
+}
+
+function Trailer({ trailer }: TrailerProps) {
   const embedUrl = `https://www.youtube.com/embed/${trailer}`;
   return (
     <iframe

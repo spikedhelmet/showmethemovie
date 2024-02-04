@@ -6,7 +6,7 @@ import {
   PosterContainer,
 } from "../App.styled";
 import voxbest from "../imgs/voxbest.jpg";
-import fetchMovieList from "../Services/fetchMoviesOnNav";
+import fetchMovieList from "../Services/fetchMovies";
 import MovieCarousel from "./Carousel";
 import Footer from "./Footer";
 
@@ -16,24 +16,24 @@ function Homepage() {
   const [nowPlaying, setNowPlaying] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
-  const [popular, setPopuplar] = useState([]);
+  const [popular, setPopular] = useState([]);
 
   //TODO Can be made into its own hook
   useEffect(() => {
-    fetchMovieList("now_playing").then((mappedMovies) => {
+    fetchMovieList("now_playing", "list").then((mappedMovies) => {
       setNowPlaying(mappedMovies);
     });
 
-    fetchMovieList("upcoming").then((mappedMovies) => {
+    fetchMovieList("upcoming", "list").then((mappedMovies) => {
       setUpcoming(mappedMovies);
     });
 
-    fetchMovieList("top_rated").then((mappedMovies) => {
+    fetchMovieList("top_rated", "list").then((mappedMovies) => {
       setTopRated(mappedMovies);
     });
 
-    fetchMovieList("popular").then((mappedMovies) => {
-      setPopuplar(mappedMovies);
+    fetchMovieList("popular", "list").then((mappedMovies) => {
+      setPopular(mappedMovies);
     });
   }, [displayed]);
 
@@ -49,7 +49,6 @@ function Homepage() {
       <MovieCarousel items={upcoming} heading={"Upcoming"} />
       <MovieCarousel items={nowPlaying} heading={"Now Playing"} />
       <MovieCarousel items={topRated} heading={"Top Rated"} />
-
       <Footer></Footer>
     </>
   );

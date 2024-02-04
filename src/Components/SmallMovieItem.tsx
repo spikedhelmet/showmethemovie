@@ -1,7 +1,12 @@
 import { Image, ImageContainer, SmallMovieContainer } from "../App.styled";
 const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
-function SmallMovieItem({ poster, title }) {
+interface SmallMovieItemProps {
+  poster: string;
+  title: string;
+}
+
+function SmallMovieItem({ poster, title }: SmallMovieItemProps) {
   return (
     <SmallMovieContainer>
       <ImageContainer>

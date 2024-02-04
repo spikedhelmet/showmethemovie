@@ -5,15 +5,16 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { useState } from "react";
 
 function Navbar() {
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [navSelect, setNavSelect] = useState(searchParams.get(`navSelect`));
   const navigate = useNavigate();
 
-  const handleSelect = (select) => {
+  const handleSelect = (select: string) => {
     setNavSelect(select);
     searchParams.set(`navSelect`, select);
     navigate(`/navResults?${searchParams.toString()}`);
   };
+
   return (
     <NavMenu>
       <NavItem
@@ -42,18 +43,6 @@ function Navbar() {
           Top Rated
         </Dropdown.Item>
       </DropdownButton>
-
-      {/* <DropdownButton
-        variant="dark"
-        menuVariant="dark"
-        id="dropdown-basic-button"
-        title="Series"
-      >
-        <Dropdown.Item href="#/action-1">Popular</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Now Playing</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Upcoming</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Top Rated</Dropdown.Item>
-      </DropdownButton> */}
     </NavMenu>
   );
 }

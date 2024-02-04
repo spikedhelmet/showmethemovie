@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { devices } from "../constants";
 
 export const Backdrop = styled.div`
-  /* position: relative; */
+  position: relative;
 `;
 
 export const Overlay = styled.div`

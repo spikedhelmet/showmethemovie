@@ -20,6 +20,7 @@ import fetchTrailer from "../Services/fetchTrailer";
 import fetchDataById from "../Services/fetchDataById";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
+import { MovieComponentInterface } from "../interfaces";
 
 function ResultMovie({
   id,
@@ -29,9 +30,9 @@ function ResultMovie({
   overview,
   genres,
   poster,
-}) {
+}: MovieComponentInterface) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
-  const [runtime, setRuntime] = useState("");
+  const [runtime, setRuntime] = useState(0);
   const [trailer, setTrailer] = useState("");
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
   const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
@@ -40,7 +41,7 @@ function ResultMovie({
     setIsOverviewExpanded(!isOverviewExpanded);
   }
 
-  function handleTrailer(id) {
+  function handleTrailer(id: number) {
     fetchTrailer(id).then((trailerKey) => {
       console.log(trailerKey);
       if (trailerKey) {
@@ -93,13 +94,14 @@ function ResultMovie({
           <DescriptionItem>⭐ {rating}</DescriptionItem>
         </MovieDetails>
       </MovieContainer>
+      {/* Trailer renders if button is clicked */}
       {isOpenTrailer && (
         <TrailerPopup>
           <TrailerContainer>
             <CloseTrailerButton onClick={handleOpenTrailer}>
               <span>Close Trailer ⓧ</span>
             </CloseTrailerButton>
-            <Trailer trailer={trailer} title={title} />
+            <Trailer trailer={trailer} />
           </TrailerContainer>
         </TrailerPopup>
       )}

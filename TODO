@@ -12,18 +12,13 @@ Todo:
     ✔ Implement carousel with upcoming, now playing etc. short data @done(23-11-01 19:39)
     ☐ Rebuild carosel via CSS scrol snap
   *
+
+  ☐ Search and Sorting
     ✔ Add searchbar to the root!!! @done(23-11-11 19:30)
     ✔ Route to searchResults @done(23-11-11 19:30)
       ✔ Use Params in link to get results @done(23-11-11 19:30)
   
-      *
-      ☐ Create individual movie page
-        ☐ It should take data from params 
-          (should it take just movie id or all data?)
-          Should take ID from URL (param)
-        ☐ Should have a shit ton of information (Region, Providers, Cast)
-      
-      *
+ 
       ☐ Implement page change for search results. (Changing numbers in API page=1)
       
       *
@@ -38,17 +33,29 @@ Todo:
     ☐ etc.
 
   *
-  ☐ Add loading state
+  ☐ Add loading states
+  
+  *
+  ☐ Create individual movie page !!!
+    ☐ It should take data from params 
+      (should it take just movie id or all data?)
+      Should take ID from URL (param)
+    ☐ Should have a shit ton of information (Region, Providers, Cast)
+  
+  *
 
   *
   ☐ Fixes and additions
     ☐ Make the searchbar more elegant. Dropdown or within navbar.
     ☐ Adjust search function to clean up
-    ☐ Fix "X" for "Close Trailer"
     ✔ Fix carousel @done(23-11-11 00:15)
     ✔ Organize into components and services @done(23-10-29 12:37)
     ✔ Change movie item to grid @done(23-10-23 23:33)
     ✔ Get the movie grid to show two items on larger screen @done(23-10-24 15:40)
     ✔ Fix movie dates size changing @done(23-10-24 15:51)
 
-  ☐ Move to Vite
+  ✔ Move to Vite and TypeScript @done(24-02-03 22:56)
+  ✔ Refactor all into TS @done(24-02-03 22:55) - mostly done
+  ☐ Deploy Redux for state management
+  ☐ Separate styles for each component
+  ☐ Use an icon pack

@@ -1,27 +1,30 @@
 import ResultMovie from "./ResultMovie";
 import { useEffect, useState } from "react";
-import { Container, MovieList } from "../App.styled";
+import { Container, StyledMovieList } from "../App.styled";
 import { useSearchParams } from "react-router-dom";
-import fetchMoviesOnSearch from "../Services/fetchMoviesOnSearch";
+import fetchMovies from "../Services/fetchMovies";
+import { MovieComponentInterface } from "../interfaces";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
-  const searchInput = searchParams.get(`search`);
-  const [moviesData, setMoviesData] = useState([]);
+  const searchInput = searchParams.get(`search`) || "default";
+  const [moviesData, setMoviesData] = useState<MovieComponentInterface[]>([]);
 
   useEffect(() => {
-    fetchMoviesOnSearch(searchInput).then((mappedMovies) => {
-      const filteredMovies = mappedMovies.filter(
+    fetchMovies(searchInput, "search").then((mappedMovies) => {
+      const filteredMovies = mappedMovies?.filter(
         (movie) => movie.runtime >= 60 && movie.budget >= 100000
       );
-      const sortedMovies = filteredMovies.sort((a, b) => b.rating - a.rating);
+      const sortedMovies = (filteredMovies || []).sort(
+        (a, b) => b.rating - a.rating
+      );
       setMoviesData(sortedMovies);
     });
   }, [searchInput]);
 
   return (
     <Container>
-      <MovieList>
+      <StyledMovieList>
         {moviesData.map((movie) => (
           <ResultMovie
             key={movie.id}
@@ -34,7 +37,7 @@ function SearchResults() {
             poster={movie.poster}
           />
         ))}
-      </MovieList>
+      </StyledMovieList>
     </Container>
   );
 }

@@ -1,4 +1,6 @@
-async function fetchDataById(id) {
+import { MovieDetailsInterface } from "../interfaces";
+
+async function fetchDataById(id: number): Promise<MovieDetailsInterface> {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=1ae05c4ea048c47557912c1f2f5d77b2`
@@ -9,9 +11,10 @@ async function fetchDataById(id) {
       );
     }
     const data = await response.json();
-    return data; // Return the entire movie details
+    return data as MovieDetailsInterface; // Return the entire movie details object
   } catch (err) {
     console.log(err);
+    throw err;
   }
 }
 

@@ -2,8 +2,6 @@
 import { styled } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { devices } from "./constants";
-import { Dropdown } from "react-bootstrap";
-import DropdownButton from "react-bootstrap/DropdownButton";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -63,7 +61,7 @@ export const SearchBar = styled.input`
   }
 `;
 
-export const MovieList = styled.div`
+export const StyledMovieList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   align-items: top;
@@ -279,7 +277,6 @@ export const CloseTrailerButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-family: inherit;
   font-size: inherit;
   border: none;
