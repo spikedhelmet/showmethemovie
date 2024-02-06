@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# ShowMeTheMovie
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ShowMeTheMovie is a web application that fetches and displays various data about movies. It uses the TMDB API to fetch the data.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Vite: A build tool that aims to provide a faster and leaner development experience for modern web projects.
+- TypeScript: A statically typed superset of JavaScript that adds optional types to the language.
+- Styled-components: A library that lets you write actual CSS in your JavaScript, making your code more readable and maintainable.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To install the project, follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository: `git clone https://github.com/spikedhelmet/showmethemovie`
+2. Navigate to the project directory: `cd showmethemovie`
+3. Install the dependencies: `npm install`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Usage
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To run the project, use the command: `npm run start`
+
+This will start the development server. You can then view the application in your browser at `http://localhost:3000`.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request.
+
+## License
+
+This project is licensed under the terms of the MIT license.
