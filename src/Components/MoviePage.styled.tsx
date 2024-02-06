@@ -32,11 +32,12 @@ export const BackdropImg = styled.img`
 
 export const FlexCont = styled.div`
   display: flex;
-  height: 50dvh;
   width: 100%;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  gap: 5rem;
+  margin: 1rem 0;
 `;
 
 // * Movie
@@ -52,7 +53,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 15rem;
+  width: 16rem;
   /* height: 20rem; */
   object-fit: contain;
   border-radius: var(--border-radius-slight);
@@ -67,11 +68,9 @@ export const Image = styled.img`
   }
 `;
 
-export const MovieDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  gap: 0rem;
+export const DescriptionContainer = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 `;
 
 export const MovieTitle = styled.h2`
@@ -131,4 +130,45 @@ export const MovieDetails = styled.div`
 export const DescriptionItem = styled.span`
   display: flex;
   align-items: center;
+`;
+
+// CastList
+export const CastList = styled.ul`
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  margin-top: -10px;
+  padding-bottom: 10px;
+`;
+
+export const ActorCard = styled.li`
+  margin: 10px 4px 10px 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  min-width: 170px;
+  /* width: 150px; */
+  color: #fff;
+`;
+
+export const ActorImage = styled.img`
+  width: 10rem;
+  object-fit: contain;
+  border-radius: var(--border-radius-slight);
+
+  @media only screen and (${devices.md}) {
+    width: 8em;
+  }
+
+  @media only screen and (${devices.sm}) {
+    /* width: 8em;
+    height: 12em; */
+  }
 `;

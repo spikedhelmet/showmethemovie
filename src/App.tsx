@@ -35,8 +35,6 @@ export default function App() {
       </Container>
       <Routes>
         <Route index element={<Homepage />} />
-        {/* <Route path="searchResults" element={<SearchResults />} />
-        <Route path="navResults" element={<NavResults />} /> */}
         <Route
           path="searchResults"
           element={<MovieList paramsType={"search"} fetchType={"search"} />}

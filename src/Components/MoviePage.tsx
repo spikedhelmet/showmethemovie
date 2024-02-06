@@ -3,7 +3,6 @@ import {
   MovieContainer,
   Image,
   ImageContainer,
-  MovieDescription,
   MovieTitle,
   MovieOverview,
   MovieDetails,
@@ -11,6 +10,10 @@ import {
   DescriptionItem,
   FlexCont,
   Overlay,
+  ActorImage,
+  CastList,
+  ActorCard,
+  DescriptionContainer,
 } from "./MoviePage.styled";
 
 import {
@@ -22,15 +25,18 @@ import {
 
 import fetchTrailer from "../Services/fetchTrailer";
 import fetchDataById from "../Services/fetchDataById";
+import fetchCast from "../Services/fetchCast";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
 import { Backdrop, BackdropImg } from "./MoviePage.styled";
-import { MovieDetailsInterface } from "../interfaces";
+import { MovieCast, CastMember, MovieDetailsInterface } from "../interfaces";
+import Poster from "./Poster";
 
-function MoviePage() {
+function MoviePage({ id }) {
   const [movieData, setMovieData] = useState<MovieDetailsInterface | null>(
     null
   );
+  const [movieCast, setMovieCast] = useState<CastMember[]>([]);
   const [trailer, setTrailer] = useState("");
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
 
@@ -41,9 +47,13 @@ function MoviePage() {
     fetchDataById(281957).then((data) => {
       setMovieData(data);
     });
+
+    fetchCast(281957).then((data) => {
+      setMovieCast(data.cast);
+    });
   }, []);
 
-  console.log(movieData);
+  console.log(movieCast);
 
   const backdropUrl = backdropBaseUrl + movieData?.backdrop_path;
   // Demo ID
@@ -80,15 +90,9 @@ function MoviePage() {
               alt={`${movieData?.title} poster`}
             />
           </ImageContainer>
-          <div>
-            <MovieDescription>
-              <MovieTitle>{movieData?.title}</MovieTitle>
-              <MovieGenre>{genresJoined} </MovieGenre>
-              <MovieOverview>{movieData?.overview}</MovieOverview>
-            </MovieDescription>
-            <WatchTrailerButton onClick={() => handleTrailer(281957)}>
-              ▶️ Watch trailer
-            </WatchTrailerButton>
+          <DescriptionContainer>
+            <MovieTitle>{movieData?.title}</MovieTitle>
+            <MovieGenre>{genresJoined} </MovieGenre>
             <MovieDetails>
               <DescriptionItem>📆 {movieData?.release_date}</DescriptionItem>
               <DescriptionItem>
@@ -96,10 +100,24 @@ function MoviePage() {
               </DescriptionItem>
               <DescriptionItem>⭐ {movieData?.vote_average}</DescriptionItem>
             </MovieDetails>
-          </div>
+            <MovieOverview>{movieData?.overview}</MovieOverview>
+            <WatchTrailerButton onClick={() => handleTrailer(281957)}>
+              ▶️ Watch trailer
+            </WatchTrailerButton>
+          </DescriptionContainer>
         </MovieContainer>
       </FlexCont>
-      <h3>Cast</h3>
+
+      <CastList>
+        {movieCast.slice(0, 15).map((castMember, index) => (
+          <>
+            <ActorCard key={index}>
+              <ActorImage src={`${posterBaseUrl}${castMember.profile_path}`} />
+              <p>{castMember.name}</p>
+            </ActorCard>
+          </>
+        ))}
+      </CastList>
 
       {/* Touch nothing below */}
       {isOpenTrailer && (

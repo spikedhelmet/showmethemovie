@@ -12,7 +12,7 @@ interface MovieObject {
 }
 
 interface CarouselProps {
-  items: MovieObject[];
+  items: MovieObject[] | undefined;
   heading: string;
 }
 
@@ -25,7 +25,7 @@ function Carousel({ items, heading }: CarouselProps) {
       <RelativeContainer>
         <CarouselContainer>
           <CarouselContent>
-            {items.map((movie: MovieObject) => (
+            {items?.map((movie: MovieObject) => (
               <SmallMovieItem
                 key={movie.id}
                 title={movie.title}

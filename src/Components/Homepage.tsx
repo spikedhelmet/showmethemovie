@@ -9,14 +9,15 @@ import voxbest from "../imgs/voxbest.jpg";
 import fetchMovieList from "../Services/fetchMovies";
 import MovieCarousel from "./Carousel";
 import Footer from "./Footer";
+import { MovieComponentInterface } from "../interfaces";
 
 function Homepage() {
-  //Change this shitshow to useReducer
+  //Change this shitshow to useReducer / Redux
   const [displayed, setDisplayed] = useState("popular");
-  const [nowPlaying, setNowPlaying] = useState([]);
-  const [upcoming, setUpcoming] = useState([]);
-  const [topRated, setTopRated] = useState([]);
-  const [popular, setPopular] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState<MovieComponentInterface[]>();
+  const [upcoming, setUpcoming] = useState<MovieComponentInterface[]>();
+  const [topRated, setTopRated] = useState<MovieComponentInterface[]>();
+  const [popular, setPopular] = useState<MovieComponentInterface[]>();
 
   //TODO Can be made into its own hook
   useEffect(() => {

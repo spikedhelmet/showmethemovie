@@ -11,7 +11,7 @@ const Footer = styled.footer`
 export default function SiteFooter() {
   return (
     <Footer>
-      <p>© 2023 Showthemovie. All rights reserved.</p>
+      <p>© 2023 showmethemovie. All rights reserved.</p>
       <p>
         <span>About Us</span> | <span>Terms of Service</span> |{" "}
         <span>Privacy Policy</span>
