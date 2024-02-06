@@ -1,19 +1,23 @@
 import { styled } from "styled-components";
 import { devices } from "../constants";
 
-export const Backdrop = styled.div`
+export const PageContainer = styled.section`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 `;
 
-export const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 1; /* Ensure the overlay is above the image */
-`;
+// export const Overlay = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: rgba(0, 0, 0, 0.45);
+//   z-index: 1; /* Ensure the overlay is above the image */
+// `;
 
 export const BackdropImg = styled.img`
   position: absolute;
@@ -22,12 +26,12 @@ export const BackdropImg = styled.img`
   width: 100%;
   /* height: 100%; */
   object-fit: cover;
-  opacity: 0.25;
+  opacity: 0.1;
 `;
 
 export const FlexCont = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -38,6 +42,7 @@ export const FlexCont = styled.div`
 // * Movie
 export const MovieContainer = styled.div`
   display: flex;
+
   gap: 2rem;
 `;
 
@@ -65,7 +70,9 @@ export const Image = styled.img`
 
 export const DescriptionContainer = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 2rem 2rem 3rem 10rem 2.5rem;
+  align-content: space-between;
+  gap: 1rem;
 `;
 
 export const MovieTitle = styled.h2`
@@ -104,9 +111,9 @@ export const MovieDetails = styled.div`
   flex-wrap: wrap;
 
   span {
-    background-color: var(--bg-color-secondary);
-    border-radius: var(--border-radius-curved);
-    padding: 0.4rem 0.6rem;
+    /* background-color: var(--bg-color-secondary); */
+    /* border-radius: var(--border-radius-curved); */
+    margin: 0 1.5rem 0 0;
   }
 
   @media only screen and (${devices.md}) {
@@ -129,6 +136,7 @@ export const DescriptionItem = styled.span`
 
 // CastList
 export const CastList = styled.ul`
+  width: 90%;
   list-style-type: none;
   list-style-position: inside;
   margin: 0;

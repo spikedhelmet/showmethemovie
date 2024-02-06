@@ -9,11 +9,11 @@ import {
   MovieGenre,
   DescriptionItem,
   FlexCont,
-  Overlay,
   ActorImage,
   CastList,
   ActorCard,
   DescriptionContainer,
+  PageContainer,
 } from "./MoviePage.styled";
 
 import {
@@ -28,10 +28,9 @@ import fetchDataById from "../Services/fetchDataById";
 import fetchCast from "../Services/fetchCast";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
-import { Backdrop, BackdropImg } from "./MoviePage.styled";
-import { MovieCast, CastMember, MovieDetailsInterface } from "../interfaces";
-import Poster from "./Poster";
-import { useParams, useSearchParams } from "react-router-dom";
+import { BackdropImg } from "./MoviePage.styled";
+import { CastMember, MovieDetailsInterface } from "../interfaces";
+import { useParams } from "react-router-dom";
 
 type idParams = {
   id: string;
@@ -81,12 +80,8 @@ function MoviePage() {
     : "";
 
   return (
-    <>
-      <Backdrop>
-        <Overlay />
-        <BackdropImg src={backdropUrl} />
-      </Backdrop>
-
+    <PageContainer>
+      <BackdropImg src={backdropUrl} />
       <FlexCont>
         <MovieContainer>
           <ImageContainer>
@@ -136,7 +131,7 @@ function MoviePage() {
           </TrailerContainer>
         </TrailerPopup>
       )}
-    </>
+    </PageContainer>
   );
 }
 

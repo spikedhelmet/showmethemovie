@@ -13,7 +13,7 @@ import { MovieComponentInterface } from "../interfaces";
 
 function Homepage() {
   //Change this shitshow to useReducer / Redux
-  const [displayed, setDisplayed] = useState("popular");
+  const [displayed] = useState("popular");
   const [nowPlaying, setNowPlaying] = useState<MovieComponentInterface[]>();
   const [upcoming, setUpcoming] = useState<MovieComponentInterface[]>();
   const [topRated, setTopRated] = useState<MovieComponentInterface[]>();

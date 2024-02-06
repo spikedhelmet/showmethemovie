@@ -5,8 +5,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { useState } from "react";
 
 function Navbar() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [navSelect, setNavSelect] = useState(searchParams.get(`navSelect`));
+  const [searchParams] = useSearchParams();
+  const [, setNavSelect] = useState(searchParams.get(`navSelect`));
   const navigate = useNavigate();
 
   const handleSelect = (select: string) => {
