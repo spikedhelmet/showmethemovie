@@ -43,7 +43,7 @@ export default function App() {
           path="navResults"
           element={<MovieList paramsType={"navSelect"} fetchType={"list"} />}
         />
-        <Route path="moviePage" element={<MoviePage />} />
+        <Route path="movie/:id" element={<MoviePage />} />
       </Routes>
     </>
   );

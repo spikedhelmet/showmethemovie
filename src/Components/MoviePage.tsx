@@ -31,8 +31,16 @@ import Trailer from "./Trailer";
 import { Backdrop, BackdropImg } from "./MoviePage.styled";
 import { MovieCast, CastMember, MovieDetailsInterface } from "../interfaces";
 import Poster from "./Poster";
+import { useParams, useSearchParams } from "react-router-dom";
 
-function MoviePage({ id }) {
+type idParams = {
+  id: string;
+};
+
+function MoviePage() {
+  let { id } = useParams<idParams>();
+  const movieId = Number(id);
+
   const [movieData, setMovieData] = useState<MovieDetailsInterface | null>(
     null
   );
@@ -44,19 +52,16 @@ function MoviePage({ id }) {
   const backdropBaseUrl = "https://image.tmdb.org/t/p/original"; // Use 'original' for the highest resolution
 
   useEffect(() => {
-    fetchDataById(281957).then((data) => {
+    fetchDataById(movieId).then((data) => {
       setMovieData(data);
     });
 
-    fetchCast(281957).then((data) => {
+    fetchCast(movieId).then((data) => {
       setMovieCast(data.cast);
     });
   }, []);
 
-  console.log(movieCast);
-
   const backdropUrl = backdropBaseUrl + movieData?.backdrop_path;
-  // Demo ID
 
   function handleTrailer(id: number) {
     fetchTrailer(id).then((trailerKey) => {
@@ -109,7 +114,7 @@ function MoviePage({ id }) {
       </FlexCont>
 
       <CastList>
-        {movieCast.slice(0, 15).map((castMember, index) => (
+        {movieCast.slice(0, 12).map((castMember, index) => (
           <>
             <ActorCard key={index}>
               <ActorImage src={`${posterBaseUrl}${castMember.profile_path}`} />

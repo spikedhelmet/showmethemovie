@@ -6,7 +6,7 @@ import {
 } from "../App.styled";
 
 interface MovieObject {
-  id: number | string;
+  id: number;
   title: string;
   poster: string;
 }
@@ -28,6 +28,7 @@ function Carousel({ items, heading }: CarouselProps) {
             {items?.map((movie: MovieObject) => (
               <SmallMovieItem
                 key={movie.id}
+                id={movie.id}
                 title={movie.title}
                 poster={movie.poster}
               ></SmallMovieItem>

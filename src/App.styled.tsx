@@ -91,6 +91,10 @@ export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-self: flex-start;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Image = styled.img`

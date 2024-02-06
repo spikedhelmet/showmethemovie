@@ -11,12 +11,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(
-    0,
-    0,
-    0,
-    0.25
-  ); /* Adjust the alpha value for the desired opacity */
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1; /* Ensure the overlay is above the image */
 `;
 

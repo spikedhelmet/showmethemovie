@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         path: "searchResults",
         element: <MovieList paramsType={"search"} fetchType={"search"} />,
       },
-      { path: "moviePage", element: <MoviePage /> },
+      { path: "movie/:id", element: <MoviePage /> },
     ],
   },
 ]);

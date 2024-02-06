@@ -21,6 +21,7 @@ import fetchDataById from "../Services/fetchDataById";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
 import { MovieComponentInterface } from "../interfaces";
+import { useNavigate } from "react-router";
 
 function ResultMovie({
   id,
@@ -36,6 +37,7 @@ function ResultMovie({
   const [trailer, setTrailer] = useState("");
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
   const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
+  const navigate = useNavigate();
 
   function toggleOverview() {
     setIsOverviewExpanded(!isOverviewExpanded);
@@ -64,7 +66,11 @@ function ResultMovie({
   return (
     <>
       <MovieContainer>
-        <ImageContainer>
+        <ImageContainer
+          onClick={() => {
+            navigate(`/movie/${id}`);
+          }}
+        >
           <Image src={`${posterBaseUrl}${poster}`} alt={`${title} poster`} />
         </ImageContainer>
         <MovieDescription>
