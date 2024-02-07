@@ -10,8 +10,8 @@ import MoviePage from "./Components/MoviePage";
 import MovieList from "./Components/MovieList";
 
 export default function App() {
-  let [searchParams, setSearchParams] = useSearchParams();
-  const [searchInput, setSearchInput] = useState(searchParams.get(`search`));
+  let [searchParams] = useSearchParams();
+  const [, setSearchInput] = useState(searchParams.get(`search`));
   const navigate = useNavigate();
 
   const handleSearch = (newSearch: string) => {

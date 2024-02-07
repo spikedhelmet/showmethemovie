@@ -1,4 +1,4 @@
-import { MovieCast, CastMember } from "../interfaces";
+import { MovieCast } from "../interfaces";
 
 const options = {
   method: "GET",
