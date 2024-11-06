@@ -10,8 +10,8 @@ import MoviePage from "./Components/MoviePage";
 import MovieList from "./Components/MovieList";
 
 export default function App() {
-  let [searchParams, setSearchParams] = useSearchParams();
-  const [searchInput, setSearchInput] = useState(searchParams.get(`search`));
+  let [searchParams] = useSearchParams();
+  const [, setSearchInput] = useState(searchParams.get(`search`));
   const navigate = useNavigate();
 
   const handleSearch = (newSearch: string) => {
@@ -35,8 +35,6 @@ export default function App() {
       </Container>
       <Routes>
         <Route index element={<Homepage />} />
-        {/* <Route path="searchResults" element={<SearchResults />} />
-        <Route path="navResults" element={<NavResults />} /> */}
         <Route
           path="searchResults"
           element={<MovieList paramsType={"search"} fetchType={"search"} />}
@@ -45,7 +43,7 @@ export default function App() {
           path="navResults"
           element={<MovieList paramsType={"navSelect"} fetchType={"list"} />}
         />
-        <Route path="moviePage" element={<MoviePage />} />
+        <Route path="movie/:id" element={<MoviePage />} />
       </Routes>
     </>
   );

@@ -1,17 +1,27 @@
-import { Image, ImageContainer } from "../App.styled";
+import { useNavigate } from "react-router";
+import { Image, ImageContainer, SmallMovieContainer } from "../App.styled";
 const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
 interface SmallMovieItemProps {
-	poster: string;
-	title: string;
+  id: number;
+  poster: string;
+  title: string;
 }
 
-function SmallMovieItem({ poster, title }: SmallMovieItemProps) {
-	return (
-		<ImageContainer>
-			<Image src={`${posterBaseUrl}${poster}`} alt={`${title} poster`} />
-		</ImageContainer>
-	);
+function SmallMovieItem({ id, poster, title }: SmallMovieItemProps) {
+  const navigate = useNavigate();
+
+  return (
+    <SmallMovieContainer
+      onClick={() => {
+        navigate(`/movie/${id}`);
+      }}
+    >
+      <ImageContainer>
+        <Image src={`${posterBaseUrl}${poster}`} alt={`${title} poster`} />
+      </ImageContainer>
+    </SmallMovieContainer>
+  );
 }
 
 export default SmallMovieItem;

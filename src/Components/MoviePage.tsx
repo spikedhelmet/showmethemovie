@@ -3,14 +3,17 @@ import {
   MovieContainer,
   Image,
   ImageContainer,
-  MovieDescription,
   MovieTitle,
   MovieOverview,
   MovieDetails,
   MovieGenre,
   DescriptionItem,
   FlexCont,
-  Overlay,
+  ActorImage,
+  CastList,
+  ActorCard,
+  DescriptionContainer,
+  PageContainer,
 } from "./MoviePage.styled";
 
 import {
@@ -22,15 +25,25 @@ import {
 
 import fetchTrailer from "../Services/fetchTrailer";
 import fetchDataById from "../Services/fetchDataById";
+import fetchCast from "../Services/fetchCast";
 import formatTime from "../Scripts/formatTime";
 import Trailer from "./Trailer";
-import { Backdrop, BackdropImg } from "./MoviePage.styled";
-import { MovieDetailsInterface } from "../interfaces";
+import { BackdropImg } from "./MoviePage.styled";
+import { CastMember, MovieDetailsInterface } from "../interfaces";
+import { useParams } from "react-router-dom";
+
+type idParams = {
+  id: string;
+};
 
 function MoviePage() {
+  let { id } = useParams<idParams>();
+  const movieId = Number(id);
+
   const [movieData, setMovieData] = useState<MovieDetailsInterface | null>(
     null
   );
+  const [movieCast, setMovieCast] = useState<CastMember[]>([]);
   const [trailer, setTrailer] = useState("");
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
 
@@ -38,15 +51,16 @@ function MoviePage() {
   const backdropBaseUrl = "https://image.tmdb.org/t/p/original"; // Use 'original' for the highest resolution
 
   useEffect(() => {
-    fetchDataById(281957).then((data) => {
+    fetchDataById(movieId).then((data) => {
       setMovieData(data);
+    });
+
+    fetchCast(movieId).then((data) => {
+      setMovieCast(data.cast);
     });
   }, []);
 
-  console.log(movieData);
-
   const backdropUrl = backdropBaseUrl + movieData?.backdrop_path;
-  // Demo ID
 
   function handleTrailer(id: number) {
     fetchTrailer(id).then((trailerKey) => {
@@ -66,12 +80,8 @@ function MoviePage() {
     : "";
 
   return (
-    <>
-      <Backdrop>
-        <Overlay />
-        <BackdropImg src={backdropUrl} />
-      </Backdrop>
-
+    <PageContainer>
+      <BackdropImg src={backdropUrl} />
       <FlexCont>
         <MovieContainer>
           <ImageContainer>
@@ -80,15 +90,9 @@ function MoviePage() {
               alt={`${movieData?.title} poster`}
             />
           </ImageContainer>
-          <div>
-            <MovieDescription>
-              <MovieTitle>{movieData?.title}</MovieTitle>
-              <MovieGenre>{genresJoined} </MovieGenre>
-              <MovieOverview>{movieData?.overview}</MovieOverview>
-            </MovieDescription>
-            <WatchTrailerButton onClick={() => handleTrailer(281957)}>
-              ▶️ Watch trailer
-            </WatchTrailerButton>
+          <DescriptionContainer>
+            <MovieTitle>{movieData?.title}</MovieTitle>
+            <MovieGenre>{genresJoined} </MovieGenre>
             <MovieDetails>
               <DescriptionItem>📆 {movieData?.release_date}</DescriptionItem>
               <DescriptionItem>
@@ -96,10 +100,24 @@ function MoviePage() {
               </DescriptionItem>
               <DescriptionItem>⭐ {movieData?.vote_average}</DescriptionItem>
             </MovieDetails>
-          </div>
+            <MovieOverview>{movieData?.overview}</MovieOverview>
+            <WatchTrailerButton onClick={() => handleTrailer(281957)}>
+              ▶️ Watch trailer
+            </WatchTrailerButton>
+          </DescriptionContainer>
         </MovieContainer>
       </FlexCont>
-      <h3>Cast</h3>
+
+      <CastList>
+        {movieCast.slice(0, 12).map((castMember, index) => (
+          <>
+            <ActorCard key={index}>
+              <ActorImage src={`${posterBaseUrl}${castMember.profile_path}`} />
+              <p>{castMember.name}</p>
+            </ActorCard>
+          </>
+        ))}
+      </CastList>
 
       {/* Touch nothing below */}
       {isOpenTrailer && (
@@ -113,7 +131,7 @@ function MoviePage() {
           </TrailerContainer>
         </TrailerPopup>
       )}
-    </>
+    </PageContainer>
   );
 }
 
