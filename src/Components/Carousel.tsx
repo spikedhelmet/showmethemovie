@@ -59,7 +59,7 @@ function Carousel({ items, heading }: CarouselProps) {
 				</NextButton>
 				{items.map((movie: MovieObject) => (
 					<SwiperSlide key={movie.id}>
-						<SmallMovieItem title={movie.title} poster={movie.poster}></SmallMovieItem>
+						<SmallMovieItem id={movie.id} title={movie.title} poster={movie.poster}></SmallMovieItem>
 					</SwiperSlide>
 				))}
 			</Swiper>
