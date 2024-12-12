@@ -1,7 +1,54 @@
 import { styled } from "styled-components";
-// import { devices } from "./constants";
+import { devices } from "../constants";
+
+export const SwiperMovieCard = styled.figure`
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	cursor: pointer;
+	border-radius: var(--border-radius-slight);
+
+	&:hover {
+		& > figcaption {
+			transform: translateY(0);
+		}
+
+		& img {
+			transform: translateY(-10%);
+		}
+	}
+`;
+
+export const SwiperMovieCardImage = styled.img`
+	width: 100%;
+	overflow: hidden;
+	object-fit: contain;
+	border-radius: var(--border-radius-slight);
+	transition: all 0.3s ease;
+
+	@media only screen and (${devices.md}) {
+	}
+	@media only screen and (${devices.sm}) {
+	}
+`;
+
+export const SwiperMovieCardInfo = styled.figcaption`
+	position: absolute;
+	bottom: 0;
+	transform: translateY(100%);
+	transition: all 0.3s ease;
+
+	width: 100%;
+	padding: 0.4rem 0;
+	text-align: center;
+	/* color: var(--bg-color-main);
+	background-color: #fff; */
+	color: var(--font-color-white);
+	background-color: var(--bg-color-main);
+`;
 
 // Carousel
+
 export const CarouselContainer = styled.div`
 	width: 95%;
 	margin: 0 auto;

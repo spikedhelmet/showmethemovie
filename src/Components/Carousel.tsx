@@ -19,7 +19,7 @@ interface CarouselProps {
 function Carousel({ items, heading }: CarouselProps) {
 	return (
 		<CarouselContainer>
-			<h3 style={{ color: "#fff", margin: "2rem 0rem 1rem 1rem" }}>{heading}</h3>
+			<h3 style={{ color: "#fff", margin: "2rem 0rem 1rem 0rem" }}>{heading}</h3>
 			<Swiper
 				spaceBetween={15}
 				slidesPerView={2}
@@ -42,15 +42,15 @@ function Carousel({ items, heading }: CarouselProps) {
 						spaceBetween: 15,
 					},
 				}}
-				// loop={true}
 				modules={[Navigation, Mousewheel, Autoplay, Keyboard]}
 				navigation={{
 					nextEl: ".carousel_right",
 					prevEl: ".carousel_left",
 				}}
+				// loop={true}
+				// autoplay={{ delay: 1500 }}
 				mousewheel={true}
-				keyboard={true}
-				autoplay={{ delay: 1500 }}>
+				keyboard={true}>
 				<PrevButton>
 					<CaretLeft className="carousel_left" size={32} color={"#fff"} />
 				</PrevButton>

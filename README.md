@@ -18,7 +18,7 @@ To install the project, follow these steps:
 
 ## Usage
 
-To run the project, use the command: `npm run start`
+To run the project, use the command: `npm run dev`
 
 This will start the development server. You can then view the application in your browser at `http://localhost:3000`.
 

@@ -87,10 +87,10 @@ export const MovieContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-	/* display: flex;
+	display: flex;
 	flex-direction: column;
-	align-self: flex-start; */
-	border-radius: var(--border-radius-slight);
+	align-self: flex-start;
+	/* border-radius: var(--border-radius-slight); */
 `;
 
 export const Image = styled.img`
@@ -98,6 +98,7 @@ export const Image = styled.img`
 	overflow: hidden;
 	object-fit: contain;
 	border-radius: var(--border-radius-slight);
+	transition: all 0.3s ease;
 
 	/* height: 15rem; */
 	/* border-top-left-radius: var(--border-radius-slight);
@@ -216,7 +217,7 @@ export const TrailerPopup = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: fixed; /* Use fixed positioning for the popup */
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -248,7 +249,7 @@ export const WatchTrailerButton = styled.button`
 	font-family: inherit;
 	font-size: inherit;
 	border: none;
-	font-weight: 600;
+	font-weight: 500;
 	color: #ffdecc;
 	background-color: #fe5800;
 	padding: 0.4rem 0.6rem;
@@ -280,13 +281,15 @@ export const CloseTrailerButton = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 0.4rem 0.6rem;
+
 	font-family: inherit;
 	font-size: inherit;
 	border: none;
 	font-weight: 600;
 	color: #fff;
 	background-color: var(--font-color-grey);
-	padding: 0.4rem 0.6rem;
+
 	border-top-left-radius: var(--border-radius-slight);
 	border-top-right-radius: var(--border-radius-slight);
 	transition: ease-in 0.2s;
@@ -384,47 +387,4 @@ export const BackgroundPoster = styled.img`
 	@media only screen and (${devices.xxs}) {
 		height: 10rem;
 	}
-`;
-
-// Carousel
-export const SmallMovieContainer = styled.div`
-	/* margin-right: 0.8rem; */
-`;
-
-export const CarouselContainer = styled.div`
-	width: 95%;
-	margin: 0 auto;
-	/* overflow: scroll; */
-`;
-
-export const RelativeContainer = styled.div`
-	position: relative;
-`;
-
-export const CarouselButton = styled.button`
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background: rgba(0, 0, 0, 0.5);
-	color: white;
-	border: none;
-	padding: 10px;
-	cursor: pointer;
-`;
-
-export const PrevButton = styled(CarouselButton)`
-	position: absolute;
-	left: 0;
-	z-index: 9999;
-`;
-
-export const NextButton = styled(CarouselButton)`
-	position: absolute;
-	right: 0;
-	z-index: 9999;
-`;
-
-export const CarouselContent = styled.div`
-	display: flex;
-	transition: transform 0.5s ease-in-out;
 `;

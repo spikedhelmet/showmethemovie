@@ -9,9 +9,8 @@ Todo:
 
     ✔ Implement swiper with upcoming, now playing etc. short data @done(23-11-01 19:39)
     ✔ Rebuild swiper via Swiper.js @done(24-11-06 17:16)
-    ☐ Add 2 pages to swiper instead of one
-    ☐ The movie cards should reveal more info on hover
-    ☐ Clicking on the movie card should lead to the product page
+    ✔ The movie cards should reveal more info on hover @done(24-11-10 11:29)
+    ✔ Clicking on the movie card should lead to the product page @done(24-11-09 11:50)
   *
 
   ☐ Search and Sorting
@@ -33,8 +32,8 @@ Todo:
   ☐ Add loading states
   
   *
-  ☐ Create individual movie page !!! 
-    ☐ It should take data from params 
+  ✔ Create individual movie page !!! @done(24-12-08 13:58)
+    ✔ It should take data from params @done(24-12-08 13:58)
       (should it take just movie id or all data?)
       Should take ID from URL (param)
     ☐ Should have a shit ton of information (Region, Providers, Cast)

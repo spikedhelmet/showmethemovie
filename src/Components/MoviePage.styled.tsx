@@ -31,7 +31,7 @@ export const BackdropImg = styled.img`
 
 export const FlexCont = styled.div`
 	display: flex;
-	width: 90%;
+	width: 95%;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -135,29 +135,13 @@ export const DescriptionItem = styled.span`
 `;
 
 // CastList
-export const CastList = styled.ul`
-	width: 90%;
-	list-style-type: none;
-	list-style-position: inside;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	position: relative;
-	top: 0;
-	left: 0;
-	-webkit-overflow-scrolling: touch;
-	overflow-y: hidden;
-	overflow-x: scroll;
-	margin-top: -10px;
-	padding-bottom: 10px;
+export const CastList = styled.div`
+	width: 95%;
 `;
 
-export const ActorCard = styled.li`
-	margin: 10px 4px 10px 10px;
-	padding-bottom: 10px;
-	overflow: hidden;
-	min-width: 170px;
-	/* width: 150px; */
+export const ActorCard = styled.figure`
+	/* overflow: hidden;
+	min-width: 170px; */
 	color: #fff;
 `;
 
